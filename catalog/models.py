@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse # for generating URLS by reversing the URL patterns.
+import uuid
 
 # Create your models here.
 
@@ -35,3 +36,30 @@ class Book(models.Model):
         # For this to work, defining a URL mapping that has the name 'book-detail',
         # and defining an associated view and template is necessary.
         return reverse('book-detail', args=[str(self.id)])
+    
+class BookInstance(models.Model):
+    """ Model that represents a specific copy of a book. """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular book across whole library.')
+    # Book many copies, a copy can only have 1 book.
+    book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)  
+    imprint = models.CharField(max_length=200)
+    due_back = models.DateField(null=True, blank=True)
+
+    LOAN_STATUS = ( # A tuple of tuples (ordered, unchangeable).
+        ('m', 'Maintenance'),
+        ('o', 'On loan'),
+        ('a', 'Available'),
+        ('r', 'Reserved'),
+    )
+
+    status = models.CharField(
+        max_length=1, choices=LOAN_STATUS, blank=True,
+        default='m', help_text='Book availability',
+    )
+
+    class Meta:
+        ordering = ['due_back']
+
+    def __str__(self) -> str:
+        return f'{self.id} ({self.book.title})' # Python 3.6
+        # return '{0} ({1})'.format(self.id, self.book.title) # For older Python versions.
