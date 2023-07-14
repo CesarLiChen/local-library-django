@@ -16,12 +16,20 @@ class AuthorAdmin(admin.ModelAdmin):
 # Registers admin class with associated model
 admin.site.register(Author, AuthorAdmin)
 
+class BookInstanceInline(admin.StackedInline): # admin.TabularInline for horizontal
+    model = BookInstance
+    extra = 0
+
 @admin.register(Book) # Does the same as 'admin.site.register()'
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'display_genre')
 
+    inlines = [BookInstanceInline]
+
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
+    list_display = ('book', 'status', 'due_back', 'id')
+
     list_filter = ('status', 'due_back')
 
     fieldsets = (
