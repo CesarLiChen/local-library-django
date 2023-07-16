@@ -1,5 +1,7 @@
+from typing import Any, Dict
 from django.shortcuts import render
 from .models import Author, Book, BookInstance, Genre, Language
+from django.views import generic
 
 # Create your views here.
 
@@ -30,3 +32,23 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+class BookListView(generic.ListView):
+    model = Book
+    context_object_name = 'book_list' # app_name/templates/app_name/booK_list
+    queryset = Book.objects.filter(title__icontains='war'[:5]) # Get 5 books containing the title 'war'
+    """ Can also do above by overriding the method. Is more flexible.
+    def get_queryset(self):
+        return Book.objects.filter(title_icontains='war')[:5] 
+    """
+
+    # template_name = 'books/book_list.html' # If needed to specify own template name/location
+
+    # Overriding context data
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        # Call base implementation first to get the context
+        context = super(BookListView, self).get_context_data(**kwargs)
+
+        # Create any data and add it to the context
+        context['some_data'] = 'This is just some data'
+        return context
