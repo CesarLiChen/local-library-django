@@ -1,10 +1,17 @@
 {% extends "base_generic.html" %}
 
+{% block title %}
+    <title>Home - LocalLibrary</title>
+{% endblock %}
+
 {% block content %}
     <h1>Local Library Home</h1>
     <p>
-        Welcome to LocalLibrary, a website developed by
-        <em>Mozilla Developer Network</em>
+        Welcome to LocalLibrary, a very basic Django website 
+        developed by following a tutorial developed by
+        <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django">
+            <em>Mozilla Developer Network</em>
+        </a>.
     </p>
     <h2>Dynamic content</h2>
     <p>The library has the following record counts:</p>
@@ -13,5 +20,7 @@
         <li><strong>Copies: </strong>{{ num_instances }}</li>
         <li><strong>Copies available: </strong>{{ num_instances_available }}</li>
         <li><strong>Authors: </strong>{{ num_authors }}</li>
+        <li><strong>Genre with word 'Horror' in it: </strong>{{ num_genres_with_word }}</li>
+        <li><strong>Books with article 'The' in it: </strong>{{ num_books_with_word_the }}</li>
     </ul>
 {% endblock %}
