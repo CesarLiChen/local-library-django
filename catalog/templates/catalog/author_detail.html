@@ -13,7 +13,7 @@
             <p>
                 <strong>
                     <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
-                    ({{ book.}})
+                    ({{ book.bookinstance_set.count }})
                 </strong><br />
                 {{ book.summary }}
             </p>
