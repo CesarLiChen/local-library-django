@@ -37,7 +37,7 @@ class BookListView(generic.ListView):
     model = Book
     """
     /locallibrary/catalog/templates/catalog/book_list.html
-        The default template file expected by the generic class-based list view 
+        The DEFAULT template file expected by the generic class-based list view 
         (for a model named Book in an application named catalog)
     """
     #==============IF YOU WANT TO CHANGE THE DEFAULT BEHAVIOUR============================
