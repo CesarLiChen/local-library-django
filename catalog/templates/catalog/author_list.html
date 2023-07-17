@@ -10,7 +10,10 @@
                     {{ author.last_name }},
                     {{ author.first_name }} 
                     ({{ author.date_of_birth }} - 
-                    {{ author.date_of_death }})
+                    {% if author.date_of_death %}
+                        {{ author.date_of_death }}
+                    {% endif %}
+                    )
                 </a>
             </li>
             {% endfor %}
