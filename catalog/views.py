@@ -35,6 +35,7 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
+    paginate_by = 10
     """
     /locallibrary/catalog/templates/catalog/book_list.html
         The DEFAULT template file expected by the generic class-based list view 
