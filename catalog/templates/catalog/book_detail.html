@@ -26,7 +26,7 @@
                         text-warning
                     {% endif %}
                 ">
-                {{ copy.get_status_display }}
+                {{ copy.get_status_display }} {# Django auto created method #}
             </p>
 
             {% if copy.status != 'a' %}
