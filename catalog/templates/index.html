@@ -23,4 +23,8 @@
         <li><strong>Genre with word 'Horror' in it: </strong>{{ num_genres_with_word }}</li>
         <li><strong>Books with article 'The' in it: </strong>{{ num_books_with_word_the }}</li>
     </ul>
+
+    <p>
+        You have visited the index page {{ num_visits }} time{{ num_visits|pluralize }}.
+    </p>
 {% endblock %}
