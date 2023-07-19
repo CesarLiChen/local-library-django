@@ -1,5 +1,9 @@
 {% extends "base_generic.html" %}
 
+{% block title %}
+    <title>{{ book.title }} - LocalLibrary</title>
+{% endblock %}
+
 {% block content %}
 
     <h1>Title: {{ book.title }}</h1>
