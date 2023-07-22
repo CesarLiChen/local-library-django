@@ -1,7 +1,8 @@
 from typing import Any, Dict
 from django.shortcuts import render
-from .models import Author, Book, BookInstance, Genre, Language
+from .models import Author, Book, BookInstance, Genre, Language, Secret
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -91,3 +92,9 @@ class AuthorListView(generic.ListView):
 
 class AuthorDetailView(generic.DetailView):
     model = Author
+
+class SecretListView(LoginRequiredMixin, generic.ListView):    
+    login_url = '/accounts/login/'
+    # redirect_field_name = '' # Diff URL parameter instead of 'next'.
+
+    model = Secret

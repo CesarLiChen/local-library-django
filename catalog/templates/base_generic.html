@@ -39,6 +39,10 @@
                         {% else %}
                             <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
                         {% endif %}
+
+                        <li><a href="{% url 'secret' %}">
+                            Super Secret Awesome (for login testing purposes)
+                        </a></li>
                     </ul>
                 {% endblock %}
             </div>

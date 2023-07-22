@@ -93,3 +93,9 @@ class Language(models.Model):
 
     def __str__(self) -> str:
         return self.language_name
+    
+class Secret(models.Model):
+    name = models.CharField(max_length=200, help_text="Dummy field, no use for this app")
+
+    def __str__(self) -> str:
+        return self.name
