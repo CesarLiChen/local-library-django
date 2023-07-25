@@ -16,6 +16,6 @@
         </ul>
 
     {% else %}
-    <p>There are no books borrowed</p>
+    <p>There are no borrowed books by the current account: {{ user.get_username }}.</p>
     {% endif %}
  {% endblock content %}
