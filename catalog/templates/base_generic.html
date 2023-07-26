@@ -32,7 +32,8 @@
                         <li><a href="{% url 'index' %}">Home</a></li>
                         <li><a href="{% url 'books' %}">All books</a></li>
                         <li><a href="{% url 'authors' %}">All authors</a></li>
-
+                        
+                        <br>
                         {% if user.is_authenticated %}
                             <li>User: {{ user.get_username }}</li>
                             <li><a href="{% url 'my-borrowed' %}">My Borrowed Books</a></li>
@@ -44,6 +45,10 @@
                         <li><a href="{% url 'secret' %}">
                             Super Secret Awesome
                         </a></li>
+
+                        <br><hr>
+
+                        <li>Staff</li>
                     </ul>
                 {% endblock %}
             </div>
