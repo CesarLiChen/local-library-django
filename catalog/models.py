@@ -70,7 +70,10 @@ class BookInstance(models.Model):
 
     class Meta:
         ordering = ['due_back']
-        # permissions = (("can_mark_returned", "Set book as returned"),)
+        permissions = (
+            ("can_mark_returned", "Set book as returned"),
+            ("can_mark_late", "Set book as late")
+        )
 
     def __str__(self) -> str:
         return f'{self.id} ({self.book.title})' # Python 3.6
