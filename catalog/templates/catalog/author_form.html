@@ -1,0 +1,17 @@
+{% extends 'base_generic.html' %}
+
+{% comment "" %}
+    Create and Update views use same template by default.
+    It is named after the model: 'modelname_form.html'
+    Can be changed with template_name_suffict = '_other_suffix'
+{% endcomment %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock content %}
