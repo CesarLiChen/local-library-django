@@ -171,7 +171,7 @@ def renew_book_librarian(request, pk):
 class AuthorCreate(CreateView):
     model = Author
     fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
-    initial = {'date_of_death': '11/06/2020'}
+    # initial = {'date_of_death': '11/06/2020'} # Example
 
 class AuthorUpdate(UpdateView):
     model = Author
