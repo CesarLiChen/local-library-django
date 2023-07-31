@@ -168,16 +168,19 @@ def renew_book_librarian(request, pk):
 
     return render(request, 'catalog/book_renew_librarian.html', context)
 
-class AuthorCreate(CreateView):
+class AuthorCreate(PermissionRequiredMixin, CreateView):
     model = Author
     fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
     # initial = {'date_of_death': '11/06/2020'} # Example
+    permission_required = 'catalog.can_mark_returned'
 
 class AuthorUpdate(UpdateView):
     model = Author
     # Not recommended (potential security issue if more fields added)
-    fields = '__all__' 
+    fields = '__all__'
+    permission_required = 'catalog.can_mark_returned'
 
 class AuthorDelete(DeleteView):
     model = Author
     success_url = reverse_lazy('authors')
+    permission_required = 'catalog.can_mark_returned'
