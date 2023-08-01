@@ -174,13 +174,13 @@ class AuthorCreate(PermissionRequiredMixin, CreateView):
     # initial = {'date_of_death': '11/06/2020'} # Example
     permission_required = 'catalog.can_mark_returned'
 
-class AuthorUpdate(UpdateView):
+class AuthorUpdate(PermissionRequiredMixin, UpdateView):
     model = Author
     # Not recommended (potential security issue if more fields added)
     fields = '__all__'
     permission_required = 'catalog.can_mark_returned'
 
-class AuthorDelete(DeleteView):
+class AuthorDelete(PermissionRequiredMixin, DeleteView):
     model = Author
     success_url = reverse_lazy('authors')
     permission_required = 'catalog.can_mark_returned'
