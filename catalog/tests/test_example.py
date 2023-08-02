@@ -1,6 +1,7 @@
 from django.test import TestCase
 
 # Create your tests here.
+
 class YourTestClass(TestCase):
     @classmethod
     def setUpTestData(cls):
