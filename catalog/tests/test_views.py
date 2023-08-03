@@ -94,7 +94,7 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
         self.assertRedirects(response, '/accounts/login/?next=/catalog/mybooks/')
 
     def test_logged_in_uses_correct_template(self):
-        login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+        login = self.client.login(username='testuser1', password='SuperLongRandomPasswordForUser1')
         response = self.client.get(reverse('my-borrowed'))
 
         # Check our user is logged in
