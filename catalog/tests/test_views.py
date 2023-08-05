@@ -281,3 +281,12 @@ class RenewBookInstancesViewTest(TestCase):
             response.context['form'].initial['renewal_date'],
             date_3_weeks_in_future
         )
+
+    def test_redirects_to_all_borrowed_book_list_on_success(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        valid_date_in_future = datetime.date.today() + datetime.timedelta(weeks=2)
+        response = self.client.post(
+            reverse('renew-book-librarian', kwargs={'pk':self.test_bookinstance1.pk,}), 
+            {'renewal_date':valid_date_in_future}
+        )
+        self.assertRedirects(response, reverse('all-borrowed'))
