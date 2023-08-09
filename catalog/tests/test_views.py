@@ -24,6 +24,10 @@ class AuthorCreateViewTest(TestCase):
         permission2 = Permission.objects.get(name='Set new due_back date')
         test_user2.user_permissions.add(permission, permission2)
         test_user2.save()
+    
+    def test_view_redirect_if_logged_in_but_no_permission(self):
+        response = self.client.get(reverse('author-create'))
+        self.assertRedirects(response, '/accounts/login/?next=/catalog/author/create/')
 
 class AuthorListViewTest(TestCase):
     @classmethod
