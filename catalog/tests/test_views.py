@@ -49,6 +49,16 @@ class AuthorCreateViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'catalog/author_form.html')
 
+    def test_redirects_to_detail_view_on_success(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        response = self.client.post(
+            reverse('author-create'),
+            {'first_name': 'Christian Name', 'last_name': 'Surname'}
+        )
+        # Manually check redirect because we don't know what author was created
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith('/catalog/author/'))
+
 class AuthorListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
@@ -314,6 +324,7 @@ class RenewBookInstancesViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         date_3_weeks_in_future = datetime.date.today() + datetime.timedelta(weeks=3)
+        print(response.context['form'])
         self.assertEqual(
             response.context['form'].initial['renewal_date'],
             date_3_weeks_in_future
