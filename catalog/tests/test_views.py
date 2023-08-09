@@ -25,9 +25,29 @@ class AuthorCreateViewTest(TestCase):
         test_user2.user_permissions.add(permission, permission2)
         test_user2.save()
     
-    def test_view_redirect_if_logged_in_but_no_permission(self):
+    def test_view_redirect_if_not_logged_in(self):
         response = self.client.get(reverse('author-create'))
         self.assertRedirects(response, '/accounts/login/?next=/catalog/author/create/')
+
+    def test_view_redirect_if_logged_in_but_no_permission(self):
+        login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('author-create'))
+        self.assertEqual(response.status_code, 403)
+
+    def test_view_redirect_if_logged_in_with_permission(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        response = self.client.get(reverse('author-create'))
+
+        self.assertEqual(str(response.context['user']), 'testuser2')
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_logged_in_uses_correct_template(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        response = self.client.get(reverse('author-create'))
+
+        self.assertEqual(str(response.context['user']), 'testuser2')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'catalog/author_form.html')
 
 class AuthorListViewTest(TestCase):
     @classmethod
