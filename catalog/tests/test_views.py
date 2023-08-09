@@ -53,7 +53,7 @@ class AuthorCreateViewTest(TestCase):
         login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
         response = self.client.post(
             reverse('author-create'),
-            {'first_name': 'Christian Name', 'last_name': 'Surname'}
+            {'first_name': 'Up and Coming Author', 'last_name': 'Their Surname'}
         )
         # Manually check redirect because we don't know what author was created
         self.assertEqual(response.status_code, 302)
