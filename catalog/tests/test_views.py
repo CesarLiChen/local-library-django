@@ -11,6 +11,19 @@ from django.utils import timezone
 from catalog.models import Author, BookInstance, Book, Genre, Language
 
 # Create your tests here.
+class AuthorCreateViewTest(TestCase):
+    def setUp(self):
+        test_user1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK')
+        test_user2 = User.objects.create_user(username='testuser2', password='2HJ1vRV0Z&3iD')
+
+        test_user1.save()
+        test_user2.save()
+
+        # Give test_user2 permission to renew books.
+        permission = Permission.objects.get(name='Set book as returned')
+        permission2 = Permission.objects.get(name='Set new due_back date')
+        test_user2.user_permissions.add(permission, permission2)
+        test_user2.save()
 
 class AuthorListViewTest(TestCase):
     @classmethod
