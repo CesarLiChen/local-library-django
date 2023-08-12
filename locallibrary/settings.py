@@ -1,4 +1,4 @@
-import os
+import os, dj_database_url
 
 """
 Django settings for locallibrary project.
@@ -132,3 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Redirects to Home URL after login
 # (Default redirects to /accounts/profile)
 LOGIN_REDIRECT_URL = '/'
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
