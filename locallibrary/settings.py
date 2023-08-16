@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['web-production-3c04.up.railway.app/', '127.0.0.1']
+ALLOWED_HOSTS = ['web-production-3c04.up.railway.app', '127.0.0.1']
 # During development, you can instead set just the base URL
 # (you might decide to change the site a few times).
 # ALLOWED_HOSTS = ['.railway.com','127.0.0.1']
@@ -149,6 +149,6 @@ DATABASES['default'].update(db_from_env)
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-3c04.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-3c04.up.railway.app']
 # During development you can instead set just the base URL
 # CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
