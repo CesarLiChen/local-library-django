@@ -147,7 +147,13 @@ DATABASES['default'].update(db_from_env)
 
 # Simplified static file serving. More efficient. Reduces size of static files.
 # https://pypi.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STORAGES = {
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    },
+}
 
 CSRF_TRUSTED_ORIGINS = ['https://web-production-3c04.up.railway.app']
 # During development you can instead set just the base URL
